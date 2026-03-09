@@ -1,0 +1,9 @@
+<div class="card" [class.highlighted]="isHighlighted()">
+  <h3>{{ product().name }}</h3>
+  <p>{{ product().description }}</p>
+  <span class="price">{{ product().price | currency }}</span>
+  <div class="actions">
+    <button (click)="onAddToCart()">Add to Cart</button>
+    <button (click)="onViewDetails()">View Details</button>
+  </div>
+</div>

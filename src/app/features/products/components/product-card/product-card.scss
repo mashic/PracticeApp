@@ -1,0 +1,28 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.5rem;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &.highlighted {
+    border-color: #3f51b5;
+    background: #f5f5ff;
+  }
+}
+
+.price {
+  font-weight: bold;
+  color: #388e3c;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
