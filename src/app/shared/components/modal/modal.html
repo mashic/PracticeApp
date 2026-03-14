@@ -1,9 +1,16 @@
 @if (isOpen()) {
-  <div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div
+    class="modal-backdrop"
+    tabindex="0"
+    (click)="onBackdropClick($event)"
+    (keydown)="onBackdropKeydown($event)"
+    (keypress)="onBackdropKeypress($event)"
+    (keyup)="onBackdropKeyup($event)"
+  >
     <div class="modal-content">
       <div class="modal-header">
         <h2>{{ title() }}</h2>
-        <button class="close-btn" (click)="onClose()">&times;</button>
+        <button class="close-btn" type="button" (click)="onClose()">&times;</button>
       </div>
       <div class="modal-body">
         <ng-content />

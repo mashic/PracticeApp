@@ -1,9 +1,9 @@
-import { Injectable, inject, signal, computed } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
+import { AuthResponse, LoginRequest, User } from '../models/user.model';
 import { ApiService } from './api.service';
 import { StorageService } from './storage.service';
-import { User, LoginRequest, AuthResponse } from '../models/user.model';
-import { Observable, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -11,18 +11,18 @@ export class AuthService {
   private storage = inject(StorageService);
   private router = inject(Router);
 
-  private currentUserSignal = signal<User | null>(null);
+  private readonly currentUserSignal = signal<User | null>(null);
 
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly isAuthenticated = computed(() => this.currentUserSignal() !== null);
 
   login(credentials: LoginRequest): Observable<AuthResponse> {
     return this.api.post<AuthResponse>('/auth/login', credentials).pipe(
-      tap(response => {
+      tap((response) => {
         this.storage.set('accessToken', response.accessToken);
         this.storage.set('refreshToken', response.refreshToken);
         this.currentUserSignal.set(response.user);
-      })
+      }),
     );
   }
 
@@ -40,10 +40,10 @@ export class AuthService {
   refreshToken(): Observable<AuthResponse> {
     const refreshToken = this.storage.get('refreshToken');
     return this.api.post<AuthResponse>('/auth/refresh', { refreshToken }).pipe(
-      tap(response => {
+      tap((response) => {
         this.storage.set('accessToken', response.accessToken);
         this.storage.set('refreshToken', response.refreshToken);
-      })
+      }),
     );
   }
 
