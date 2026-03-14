@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, HostListener, input, inject } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]',

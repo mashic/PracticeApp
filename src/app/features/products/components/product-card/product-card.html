@@ -3,7 +3,7 @@
   <p>{{ product().description }}</p>
   <span class="price">{{ product().price | currency }}</span>
   <div class="actions">
-    <button (click)="onAddToCart()">Add to Cart</button>
-    <button (click)="onViewDetails()">View Details</button>
+    <button type="button" (click)="onAddToCart()">Add to Cart</button>
+    <button type="button" (click)="onViewDetails()">View Details</button>
   </div>
 </div>
